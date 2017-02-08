@@ -54,7 +54,7 @@ fi
 # Build the default nginx config files.
 tpl "$DIR/nginx.tpl" "$DIR/nginx/nginx.conf"
 tpl "$DIR/fastcgi.tpl" "$DIR/nginx/fastcgi.conf"
-tpl "$DIR/default-site.tpl" "$DIR/nginx/sites-enabled/default-site.conf"
+tpl "$DIR/defaultsite.tpl" "$DIR/nginx/sites-enabled/defaultsite.conf"
 
 # Start nginx.
 nginx -c "$DIR/nginx/nginx.conf"

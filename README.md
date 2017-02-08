@@ -1,5 +1,5 @@
 # Template for Travis CI Testing of Nginx Configuration Files
-# Written by Mitchell Krog - https://github.com/mitchellkrogza
+## Written by Mitchell Krog - https://github.com/mitchellkrogza
 
 This is a basic template for getting Travis CI's container based infrastructure to install a stable version of Nginx including Nginx-Extras and to test any scenario of Nginx.conf files and customization scripts you have written.
 

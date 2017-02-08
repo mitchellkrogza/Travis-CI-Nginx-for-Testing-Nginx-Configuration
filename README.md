@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration.svg?branch=master)](https://travis-ci.org/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration)
 # Template for Travis CI Testing of Nginx Configuration Files
 ## Written by Mitchell Krog - https://github.com/mitchellkrogza
 

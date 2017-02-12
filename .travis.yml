@@ -31,3 +31,24 @@ script:
   - curl -vsf 'http://localhost:8080/nginx.php' &> /dev/stdout
   - curl -A "googlebot" http://localhost:8080/nginx.php &> /dev/stdout
   - cat /tmp/error.log
+
+before_deploy:
+- git config --global user.email "builds@travis-ci.com"
+- git config --global user.name "Travis CI"
+- export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
+- git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
+- git push -q https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags
+- ls -aR
+deploy:
+  provider: releases
+  api_key:
+    secure: ${GH_TOKEN}
+  file:
+  - test.txt
+  skip_cleanup: true
+  on:
+    tags: false
+    all_branches: true
+branches:
+except: /^*-v[0-9]/
+secure: "p2TLxrOfl7xFRhur6Lga5GWxrOr+/+msF3VGqDkNYFTGiGhEWIFel+oaYjcsQL4VQGVpYiIEbMTqXlTWT7cMpUcong0XqWM9C8uMIspy74lvCy/+ypPGwYgs8DyHUbPyF89sWjKPKr6ivlXxWR93RgCdjwa4QanHENUt9pRbJAQX7Zy1Fu7sCpkeu4lgo0zJyFcaxvcQZsknmkLSE6sFG2CGd0JtC1UZstfvzwlBLR6UrNsTLFzzUY3DezZbjraXqbkMXMnEibLgHiPWgL2fBGZkvOZFdc6g61oPEM9CRHuLj3HngCnF86E5S3kHP8iZuO4S6uAjWqZ4LL5mhiAVN3lb3erAC7hXAhr2g13RNI8PDUvaZd53/S580jzxRffWb7LPuitYLI/pRqD3pNAltiRUJaq2BTcW6YCR5PUPStLrkE0HDTB7++i+r4fgukdLp9KtIEejIK6eI8s/z1pwV3dlYg1bJl8h2eA6ATvOz20x8lh0gbfcDYZekMJCdo8Wt9XKluYp24cTwE7wZucYLpMBqT7EddpdbkckTpntRuBjMqJamwlX2sDtWvyjd2AG+v18uZHZbNTjRFbYQioskvJ8L4sYMtJOek8aPiB0iU3J80mtWdy3CXEDvE+xSsNeQq3A3y2lK5IW+yObZFiUbClm6JHeq6dopH3HC2A1c+g="

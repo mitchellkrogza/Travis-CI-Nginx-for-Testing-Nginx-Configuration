@@ -32,7 +32,7 @@ before_deploy:
 - git remote set-url origin https://github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration.git
 - export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
-- git push -q https://${GH_TOKEN}@github.com/Stevie-Ray/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags
+- git push -q https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags
 - ls -aR
 deploy:
   provider: releases

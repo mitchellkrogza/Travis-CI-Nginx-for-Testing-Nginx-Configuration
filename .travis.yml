@@ -26,7 +26,6 @@ script:
 before_deploy:
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"
-- git remote set-url origin https://github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration.git
 - export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags

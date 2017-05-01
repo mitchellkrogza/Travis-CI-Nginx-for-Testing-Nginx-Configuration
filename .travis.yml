@@ -12,8 +12,7 @@ cache:
 addons:
   apt:
     packages:
-      - nginx
-      - nginx-extras
+      - nginx-full
 install:
   #- sudo add-apt-repository -y ppa:nginx/stable
   #- sudo apt-get update

@@ -60,3 +60,8 @@
 #nginx -c "$DIR/nginx/nginx.conf"
 echo $TRAVIS_BUILD_DIR
 ls -la /etc/nginx
+cd /usr/sbin
+sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/install-ngxblocker -O install-ngxblocker
+sudo chmod +x install-ngxblocker
+sudo ./install-ngxblocker -x
+ls -la /etc/nginx

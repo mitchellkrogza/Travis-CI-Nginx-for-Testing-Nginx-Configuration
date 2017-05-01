@@ -13,8 +13,8 @@ matrix:
   fast_finish: true
 sudo: required
 dist: trusty
-cache:
-  - apt
+#cache:
+#  - apt
 addons:
   apt:
     packages:

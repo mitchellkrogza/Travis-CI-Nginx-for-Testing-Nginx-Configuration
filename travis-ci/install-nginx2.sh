@@ -63,8 +63,10 @@ set -x
 sudo rm /etc/nginx/sites-available/default
 sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/install-ngxblocker -O /usr/sbin/install-ngxblocker
 sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/setup-ngxblocker -O /usr/sbin/setup-ngxblocker
+sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/update-ngxblocker -O /usr/sbin/update-ngxblocker
 sudo chmod +x /usr/sbin/install-ngxblocker
 sudo chmod +x /usr/sbin/setup-ngxblocker
+sudo chmod +x /usr/sbin/update-ngxblocker
 cd /usr/sbin
 sudo ./install-ngxblocker -x
 sudo cp $TRAVIS_BUILD_DIR/travis-ci/default.vhost /etc/nginx/sites-available/default.vhost
@@ -84,3 +86,6 @@ sudo cp $TRAVIS_BUILD_DIR/www/index.php /var/www/html/index.php
 #ls -la /etc/nginx/sites-enabled/
 #ls -la /etc/nginx/sites-available/
 #cat /etc/nginx/sites-available/default.vhost
+cd /usr/sbin
+sudo ./update-ngxblocker
+sudo service nginx reload

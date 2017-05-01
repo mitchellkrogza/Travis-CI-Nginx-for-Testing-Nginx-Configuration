@@ -7,7 +7,6 @@ env:
 matrix:
   include:
     - php: 7.0
-      env: WP_TRAVISCI=travis:phpunit
   allow_failures:
     - php: 7.0
     - php: hhvm
@@ -23,12 +22,13 @@ install:
   #- sudo add-apt-repository -y ppa:nginx/stable
   #- sudo apt-get update
   #- sudo apt-get install -y --force-yes nginx-extras
-  - travis-ci/install-nginx2.sh
+  #- travis-ci/install-nginx2.sh
 script:
   #- sudo nginx -t &> /dev/stdout
   #- curl -vsf 'http://localhost:8080/nginx.php' &> /dev/stdout
   #- curl -A "googlebot" http://localhost:8080/nginx.php &> /dev/stdout
   #- cat /tmp/error.log
+  - travis-ci/install-nginx2.sh
 before_deploy:
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"

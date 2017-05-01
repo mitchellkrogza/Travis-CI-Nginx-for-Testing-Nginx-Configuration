@@ -42,7 +42,7 @@ before_deploy:
 - sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags
-- ls -aR
+#- ls -aR
 deploy:
   provider: releases
   api_key:

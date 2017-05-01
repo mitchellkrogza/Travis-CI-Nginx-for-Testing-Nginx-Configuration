@@ -63,7 +63,7 @@ echo $TRAVIS_BUILD_DIR
 ls -la /etc/nginx
 cd /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration
 sudo chmod +x install-ngxblocker
-sudo ./install-ngxblocker
-sudo ./install-ngxblocker -h
-sudo ./install-ngxblocker -x
+sudo ./install-ngxblocker > /dev/null 2>&1
+sudo ./install-ngxblocker -h > /dev/null 2>&1
+sudo ./install-ngxblocker -x > /dev/null 2>&1
 ls -la /etc/nginx

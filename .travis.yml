@@ -13,12 +13,11 @@ matrix:
   fast_finish: true
 sudo: required
 dist: trusty
-#cache:
-#  - apt
+cache:
+  - apt
 addons:
   apt:
     packages:
-      #- nginx-full
       - realpath
 install:
   - sudo add-apt-repository -y ppa:nginx/stable
@@ -28,7 +27,7 @@ install:
 script:
   - travis-ci/install-nginx2.sh
   #- sudo nginx -t &> /dev/stdout
-  #- curl -vsf 'http://localhost:8080/nginx.php' &> /dev/stdout
+  - curl -vsf 'http://localhost:9000/index.php' &> /dev/stdout
   #- curl -A "googlebot" http://localhost:8080/nginx.php &> /dev/stdout
   #- cat /tmp/error.log
 before_deploy:

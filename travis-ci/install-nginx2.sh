@@ -68,12 +68,14 @@ cd /usr/sbin
 sudo ./install-ngxblocker -x
 sudo cp $TRAVIS_BUILD_DIR/travis-ci/default.vhost /etc/nginx/sites-available/default.vhost
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
-cd /usr/sbin
+#cd /usr/sbin
 #sudo ./setup-ngxblocker -x
 sudo nginx -c /etc/nginx/nginx.conf
 sudo nginx -t &> /dev/stdout
 cat /etc/nginx/nginx.conf
 #sudo nginx -V
-sudo netstat -peanut
+#sudo netstat -peanut
 #ls -la /etc/nginx/sites-available/
 #ls -la /etc/nginx/sites-enabled/
+sudo cp $TRAVIS_BUILD_DIR/travis-ci/www/index.php /var/www/html/index.php
+ls -la /var/www/html

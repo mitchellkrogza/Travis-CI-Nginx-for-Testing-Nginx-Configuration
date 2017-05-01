@@ -71,3 +71,5 @@ sudo $TRAVIS_BUILD_DIR/install-ngxblocker -x 2>&1
 ls -la $TRAVIS_BUILD_DIR
 ls -la /etc/nginx
 ls -la /etc/nginx/conf.d
+cd /
+ls -la

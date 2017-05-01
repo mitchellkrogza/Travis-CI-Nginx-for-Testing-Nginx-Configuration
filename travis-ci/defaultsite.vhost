@@ -1,18 +1,11 @@
 server {
-    listen 8080 default_server;
-    listen [::]:8080 default_server ipv6only=on;
-    root {ROOT}/www;
-    access_log /tmp/access.log;
-    error_log /tmp/error.log;
-    
-    # Add Any Custom Configurations Here
+	# SSL configuration
+	#
+	listen *:80;
+    listen [::]:80;    
 
-    location ~* "\.php(/|$)" {
-        include fastcgi.conf;
-        fastcgi_pass php;
-    }
+	root /var/www/html;
+	server_name localhost;
+	charset UTF-8;
 
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
 }

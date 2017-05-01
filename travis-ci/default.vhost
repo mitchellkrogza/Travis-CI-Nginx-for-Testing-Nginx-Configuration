@@ -1,7 +1,7 @@
 server {
 	# SSL configuration
 	#
-	listen *:80;
+	listen 127.0.0.1:80;
 
 	root /var/www/html;
 	server_name localhost;

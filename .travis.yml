@@ -11,7 +11,8 @@ matrix:
     - php: 7.0
     - php: hhvm
   fast_finish: true
-
+sudo: required
+dist: trusty
 cache:
   - apt
 addons:

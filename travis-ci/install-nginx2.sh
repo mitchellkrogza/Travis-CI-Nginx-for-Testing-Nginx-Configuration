@@ -74,6 +74,6 @@ sudo nginx -c /etc/nginx/nginx.conf
 sudo nginx -t &> /dev/stdout
 cat /etc/nginx/nginx.conf
 #sudo nginx -V
-#sudo netstat -peanut
+sudo netstat -peanut
 #ls -la /etc/nginx/sites-available/
 #ls -la /etc/nginx/sites-enabled/

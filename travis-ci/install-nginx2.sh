@@ -70,5 +70,6 @@ sudo rm /etc/nginx/sites-enabled/default
 sudo cp $TRAVIS_BUILD_DIR/travis-ci/defaultsite.vhost /etc/nginx/sites-available/default.vhost
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
 sudo mv $TRAVIS_BUILD_DIR/travis-ci/nginx.conf /etc/nginx/nginx.conf
+sudo nginx -c /etc/nginx/nginx.conf
 sudo nginx -t
 sudo nginx -V

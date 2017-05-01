@@ -12,8 +12,8 @@ _inputdbB=$TRAVIS_BUILD_DIR/gentime.db
 
 # Declare Nginx template and temp variables
 _nginx=$TRAVIS_BUILD_DIR/globalblacklist.conf
-_tmpnginxA=tmpnginxA
-_tmpnginxB=tmpnginxB
+_tmpnginxA=$TRAVIS_BUILD_DIRtmpnginxA
+_tmpnginxB=$TRAVIS_BUILD_DIRtmpnginxB
 
 # Start and End Strings to Search for to do inserts into template
 _startdate="### Last Updated"
@@ -27,8 +27,7 @@ LASTUPDATEIFS=$IFS
 IFS=$'\n'
 now="$(date)"
 echo $_startdate >> $_tmpnginxA
-printf "### Updated: "$now"\n" >> $_tmpnginxA
-printf "### Build: "$GIT_TAG"\n" >> $_tmpnginxA
+printf "### Updated: "$now"\n ### Build: "$GIT_TAG"\n" >> $_tmpnginxA
 echo $_enddate  >> $_tmpnginxA
 IFS=$LASTUPDATEIFS
 mv $_tmpnginxA $_inputdbA

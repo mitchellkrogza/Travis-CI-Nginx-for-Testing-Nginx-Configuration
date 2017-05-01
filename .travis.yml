@@ -39,8 +39,8 @@ before_deploy:
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"
 - export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
-- git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+- git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags
 - ls -aR
 deploy:
@@ -50,6 +50,7 @@ deploy:
   file:
   - test.txt
   - test2.txt
+  - globalblacklist.conf
   skip_cleanup: true
   on:
     tags: false

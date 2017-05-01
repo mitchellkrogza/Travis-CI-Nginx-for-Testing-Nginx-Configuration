@@ -65,7 +65,8 @@ sudo $TRAVIS_BUILD_DIR/install-ngxblocker -x
 ls -la /etc/nginx/conf.d
 ls -la /etc/nginx/bots.d
 ls -la /etc/nginx/sites-available
+sudo rm /etc/nginx/sites-available/default
+sudo rm /etc/nginx/sites-enabled/default
 sudo cp $TRAVIS_BUILD_DIR/travis-ci/defaultsite.tpl /etc/nginx/site-available/default.vhost
-sudo rm /etc/nginx/site-available/default
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
 sudo nginx -t

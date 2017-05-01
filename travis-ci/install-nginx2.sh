@@ -60,19 +60,17 @@ set -x
 # Start nginx.
 #nginx -c "$DIR/nginx/nginx.conf"
 #echo $TRAVIS_BUILD_DIR
-sudo chmod +x $TRAVIS_BUILD_DIR/install-ngxblocker
-sudo chmod +x $TRAVIS_BUILD_DIR/setup-ngxblocker
-sudo $TRAVIS_BUILD_DIR/install-ngxblocker -x
-#ls -la /etc/nginx/conf.d
-#ls -la /etc/nginx/bots.d
-#ls -la /etc/nginx/sites-available
-#sudo rm /etc/nginx/sites-available/default
-#sudo rm /etc/nginx/sites-enabled/default
-sudo cp $TRAVIS_BUILD_DIR/travis-ci/defaultsite.vhost /etc/nginx/sites-available/default.vhost
+sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/install-ngxblocker -O /usr/sbin/install-ngxblocker
+sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/setup-ngxblocker -O /usr/sbin/setup-ngxblocker
+sudo chmod +x /usr/sbin/install-ngxblocker
+sudo chmod +x /usr/sbin/setup-ngxblocker
+cd /usr/sbin
+sudo ./install-ngxblocker -x
+sudo cp $TRAVIS_BUILD_DIR/travis-ci/default.vhost /etc/nginx/sites-available/default.vhost
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
-#sudo mv $TRAVIS_BUILD_DIR/travis-ci/nginx.conf /etc/nginx/nginx.conf
-sudo $TRAVIS_BUILD_DIR/setup-ngxblocker -x
-cat /etc/nginx/nginx.conf
+cd /usr/sbin
+sudo ./setup-ngxblocker -x
+#cat /etc/nginx/nginx.conf
 sudo nginx -c /etc/nginx/nginx.conf
 sudo nginx -t
 #sudo nginx -V

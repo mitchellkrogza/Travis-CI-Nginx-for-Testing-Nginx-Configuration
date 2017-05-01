@@ -2,7 +2,7 @@
 # Travis CI Bash Script for Installing Nginx on Travis CI and Testing Configurations
 # https://github.com/mitchellkrogza
 
-set -e
+#set -e
 set -x
 
 #DIR=$(realpath $(dirname "$0"))

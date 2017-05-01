@@ -4,6 +4,7 @@
 
 #set -e
 set -x
+set -v
 
 #DIR=$(realpath $(dirname "$0"))
 #USER=$(whoami)

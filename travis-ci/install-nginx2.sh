@@ -60,6 +60,8 @@
 #nginx -c "$DIR/nginx/nginx.conf"
 echo $TRAVIS_BUILD_DIR
 ls -la /etc/nginx
-sudo chmod +x /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/install-ngxblocker
-sudo /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/install-ngxblocker -x
+chmod +x /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/install-ngxblocker
+/home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/install-ngxblocker
+/home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/install-ngxblocker -h
+/home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/install-ngxblocker -x
 ls -la /etc/nginx

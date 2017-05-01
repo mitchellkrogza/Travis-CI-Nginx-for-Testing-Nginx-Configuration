@@ -44,7 +44,7 @@ before_deploy:
 - git config --global push.default simple
 - export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 - sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
-- git commit -am "$GIT_TAG"
+- git commit -am "Travis Test Passed"
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - git push origin master && git push origin master --tags
 #- git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags

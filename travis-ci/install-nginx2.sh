@@ -71,8 +71,8 @@ sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/def
 cd /usr/sbin
 #sudo ./setup-ngxblocker -x
 sudo nginx -c /etc/nginx/nginx.conf
-sudo nginx -t
-cat /etc/nginx/nginx.conf
+sudo nginx -t &> /dev/stdout
+#cat /etc/nginx/nginx.conf
 #sudo nginx -V
 #sudo netstat -peanut
 #ls -la /etc/nginx/sites-available/

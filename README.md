@@ -6,8 +6,6 @@ This is a basic template for getting Travis CI's container based infrastructure 
 
 I actually use this a test playground for my Nginx Bad Bot Blocker - https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker so it's always changing but it will give you the basics of how to properly install Nginx on Travis. 
 
-My previous commits to this repository used incorrect (but working) methods of installing nginx you will see now that the .travis.yml has a simple command to install nginx-full this is is the correct way to properly have Travis CI install nginx not by adding repo's and manually installing it anymore as it was before.
-
 ## The purpose of this repository?
 
 Travis CI is a great system for checking and testing your build's Commits, Pull Requests and Merges. Travis runs everything inside a Docker container so it's a fully contained system that you can run build tests on your GIT repository and you can't break anything outside of it.

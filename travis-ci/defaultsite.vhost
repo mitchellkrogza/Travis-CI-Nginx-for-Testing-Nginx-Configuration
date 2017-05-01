@@ -1,8 +1,8 @@
 server {
 	# SSL configuration
 	#
-	listen *:80;
-    listen [::]:80;    
+	listen *:8080;
+    listen [::]:8080;    
 
 	root /var/www/html;
 	server_name localhost;

@@ -73,3 +73,4 @@ sudo mv $TRAVIS_BUILD_DIR/travis-ci/nginx.conf /etc/nginx/nginx.conf
 sudo nginx -c /etc/nginx/nginx.conf
 sudo nginx -t
 sudo nginx -V
+sudo netstat -peanut

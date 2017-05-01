@@ -83,5 +83,5 @@ sudo cp $TRAVIS_BUILD_DIR/www/index.php /var/www/html/index.php
 cd /usr/sbin
 sudo ./update-ngxblocker
 sudo service nginx reload
-chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh

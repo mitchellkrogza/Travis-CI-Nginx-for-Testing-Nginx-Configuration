@@ -1,0 +1,202 @@
+#!/bin/sh
+
+# Shell Script for Auto Updating the Nginx Bad Bot Blocker
+# Copyright: https://github.com/mitchellkrogza
+# Project Url: https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker
+# Update script & Alpine Linux package by Stuart Cardall: https://github.com/itoffshore
+
+# MAKE SURE you have all the following files in /etc/nginx/bots.d/ folder
+# ***********************************************************************
+# whitelist-ips.conf
+# whitelist-domains.conf
+# blacklist-user-agents.conf
+# bad-referrer-words.conf
+# custom-bad-referrers.conf
+# blacklist-ips.conf
+# A major change to using include files was introduced in
+# https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/commit/7e3ab02172dafdd524de5dd450a9732328622779
+# **************************************************************************
+# Nginx will fail a reload with [EMERG] without the presence of these files.
+
+# PLEASE READ UPDATED CONFIGURATION INSTRUCTIONS BEFORE USING THIS
+
+# Save this file as /usr/sbin/update-ngxblocker
+# cd /usr/sbin
+# sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/update-ngxblocker -O update-ngxblocker
+# Make it Executable chmod 700 /usr/sbin/update-ngxblocker
+
+# RUN THE UPDATE
+# Here our script runs, pulls the latest update, reloads nginx and emails you a notification
+
+EMAIL="mitchellkrog@gmail.com"
+SEND_EMAIL="Y"
+CONF_DIR=/etc/nginx/conf.d
+
+##### end user configuration ##############################################################
+
+usage() {
+        local script=$(basename $0)
+        cat <<EOF
+$script: UPDATE Nginx Bad Bot Blocker blacklist in: [ $CONF_DIR ]
+
+Usage: $script [OPTIONS]
+        [ -c ] : NGINX conf directory          (default: $CONF_DIR)
+        [ -r ] : Change repo url               (default: $REPO)
+        [ -e ] : Change email address          (default: $EMAIL)
+        [ -n ] : Do not send email report      (default: $SEND_EMAIL)
+        [ -v ] : Print blacklist version
+        [ -h ] : this help message
+
+Examples:
+ $script                         (Download blacklist.conf to: $CONF_DIR)
+ $script -c /my/custom/conf.d    (Download blacklist.conf to a custom location)
+EOF
+        exit 0
+}
+
+check_version() {
+        local file=$CONF_DIR/globalblacklist.conf
+
+        if [ -f $file ]; then
+                grep Version $file
+                grep 'Updated:' $file
+        else
+                printf "Missing '$file' (pass -c \$path before -v)\n"
+        fi
+
+        exit 0
+}
+
+service_cmd() {
+	# arch linux does not have a 'service' command
+	local svc= svc_list="service systemctl rc-service"
+
+	for svc in $svc_list; do
+		svc=$(which $svc 2>/dev/null)
+		if [ -n "$svc" ]; then
+			echo $svc
+			exit 0
+		fi
+	done
+}
+
+wget_opts() {
+	local opts=
+
+	# Busybox wget gives less verbose output by default
+	if [ -n "$(wget --help 2>/dev/null | grep "\-nv")" ]; then
+		opts="-nv"
+	fi
+
+	echo $opts
+}
+
+sanitize_path() {
+        echo $1 |tr -cd '[:alnum:] [=@=] [=.=] [=-=] [=/=] [=_=]' \
+                |tr -s '@.-/_' |awk '{print tolower($0)}'
+}
+
+sanitize_url() {
+        echo $1 |tr -cd '[:alnum:] [=:=] [=.=] [=-=] [=/=]' \
+                |tr -s ':.-' |awk '{print tolower($0)}'
+}
+
+sanitize_email() {
+        echo $1 |tr -cd '[:alnum:] [=@=] [=.=] [=-=] [=_=]' \
+                |tr -s '@-_.' |awk '{print tolower($0)}'
+}
+
+check_args() {
+        local option=$1 type=$2 arg=$3
+        local msg="ERROR: option '-$option' argument '$arg' requires:"
+
+        case "$type" in
+                path)   if ! echo $arg | grep ^/ 1>/dev/null; then
+                                printf "$msg absolute path.\n"
+                                exit 1
+                        fi
+                        ;;
+                email)  if ! echo $arg | grep -E ^[-_[:alnum:]]+@[-_[:alnum:]]+[\.][\.a-z]+ 1>/dev/null; then
+                                printf "$msg email@domain.com\n"
+                                exit 1
+                        fi
+                        ;;
+                url)    if ! echo $arg | grep -E ^http[s]?://[0-9a-zA-Z-]+[.]+[/0-9a-zA-Z.]+ 1>/dev/null; then
+                                printf "$msg url => http[s]://the.url\n"
+                                exit 1
+                        fi
+                        ;;
+                none)   printf "$msg argument.\n"; exit 1;;
+        esac
+}
+
+get_options() {
+        local arg= opts=
+
+        while getopts :c:r:e:nvh opts "$@"
+        do
+                if [ -n "${OPTARG}" ]; then
+                        case "$opts" in
+                                r) arg=$(sanitize_url ${OPTARG});;
+                                e) arg=$(sanitize_email ${OPTARG});;
+                                *) arg=$(sanitize_path ${OPTARG});;
+                        esac
+                fi
+
+                case "$opts" in
+                        c) CONF_DIR=$arg; check_args $opts path $arg ;;
+                        r) REPO=$arg; check_args $opts url $arg ;;
+                        e) EMAIL=$arg; check_args $opts email $arg ;;
+                        n) SEND_EMAIL=N ;;
+                        v) check_version ;;
+                        h) usage ;;
+                       \?) usage ;;
+                        :) check_args $OPTARG none none ;;
+                esac
+        done
+}
+
+main() {
+	local email_report=$(mktemp) file=globalblacklist.conf
+	local REPO=https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master
+	local remote_dir=conf.d url= output=
+	# default to service (centos does not have 'which' by default)
+	local service=${service_cmd:-"service"}
+
+	# require root
+	if [ "$(id -u)" != "0" ]; then
+		echo "This script must be run as root" 1>&2
+		exit 1
+	fi
+
+	# parse command line
+	get_options $@
+	url=$REPO/$remote_dir/$file
+	output=$CONF_DIR/$file
+
+	# download update
+	mkdir -p $CONF_DIR
+	wget $url $(wget_opts) -O $output 2>&1 | tee $email_report
+
+	# re-read configuration
+	if ! grep "Not Found" $email_report; then
+		$service nginx reload | tee -a $email_report
+	else
+		printf "\nDownload failed: not reloading nginx config\n" | tee -a $email_report
+	fi
+
+	# email report
+	case "$SEND_EMAIL" in
+		y*|Y*) printf "\nEmailing report to: $EMAIL\n";
+		       cat $email_report | mail -s "Nginx Bad Bot Blocker Updated - TRAVIS CI" $EMAIL;;
+	esac
+
+	rm -f $email_report
+}
+
+main $@
+exit $?
+
+# Add this as a cron to run daily / weekly as you like
+# Here's a sample CRON entry to update every day at 10pm
+# 00 22 * * * /usr/sbin/update-ngxblocker

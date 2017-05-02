@@ -27,7 +27,7 @@ LASTUPDATEIFS=$IFS
 IFS=$'\n'
 now="$(date)"
 echo $_startdate >> $_tmpnginxA
-printf "### Updated: "$now"\n ### Build: "$GIT_TAG"\n" >> $_tmpnginxA
+printf "### Updated: "$now"\n### Build: "$GIT_TAG"\n" >> $_tmpnginxA
 echo $_enddate  >> $_tmpnginxA
 IFS=$LASTUPDATEIFS
 mv $_tmpnginxA $_inputdbA

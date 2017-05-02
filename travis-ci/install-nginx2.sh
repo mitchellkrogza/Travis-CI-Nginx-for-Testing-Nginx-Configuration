@@ -85,19 +85,20 @@ sudo ./update-ngxblocker
 sudo service nginx reload
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/deploy.sh
-sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
-cd $TRAVIS_BUILD_DIR
-sudo git remote -v
-sudo git remote rm origin
+sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/before-deploy.sh
+#sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+#cd $TRAVIS_BUILD_DIR
+#sudo git remote -v
+#sudo git remote rm origin
 #cat $TRAVIS_BUILD_DIR/globalblacklist.conf
-sudo git config --global user.email "${GIT_EMAIL}"
-sudo git config --global user.name "${GIT_NAME}"
-sudo git config --global push.default simple
+#sudo git config --global user.email "${GIT_EMAIL}"
+#sudo git config --global user.name "${GIT_NAME}"
+#sudo git config --global push.default simple
 #sudo export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 #msg="Build $TRAVIS_BUILD_NUMBER"
 #echo "$msg" >> $TRAVIS_BUILD_DIR/build.txt
-sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf
-sudo git commit -m "Build $TRAVIS_BUILD_NUMBER"
+#sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf
+#sudo git commit -m "Build $TRAVIS_BUILD_NUMBER"
 
 #sudo sed --version
 #sudo apt-cache policy dash

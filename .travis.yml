@@ -38,6 +38,7 @@ script:
   - STATUSCODE=$(curl -A "masscan" http://localhost:9000/index.php &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
   - STATUSCODE=$(curl -I http://localhost:9000/index.php -e http://100dollars-seo.com &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
   - STATUSCODE=$(curl -I http://localhost:9000/index.php -e http://zx6.ru &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
+  - travis-ci/before-deploy.sh
 
 before_deploy:
 #- git remote -v

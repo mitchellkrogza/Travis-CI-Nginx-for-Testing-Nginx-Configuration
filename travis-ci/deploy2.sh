@@ -2,7 +2,7 @@
 YEAR=$(date +"%Y")
 MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
-git clone --branch=$branch $repo
+git clone --depth=50 --branch=master https://github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration.git mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration
 git reset --hard $sha1
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"

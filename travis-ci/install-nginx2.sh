@@ -71,8 +71,8 @@ cd /usr/sbin
 sudo ./install-ngxblocker -x
 sudo cp $TRAVIS_BUILD_DIR/travis-ci/default.vhost /etc/nginx/sites-available/default.vhost
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
-#cd /usr/sbin
-#sudo ./setup-ngxblocker -x
+cd /usr/sbin
+sudo ./setup-ngxblocker -x
 sudo nginx -c /etc/nginx/nginx.conf
 sudo service nginx reload
 #sudo nginx -t &> /dev/stdout
@@ -83,5 +83,5 @@ sudo cp $TRAVIS_BUILD_DIR/www/index.php /var/www/html/index.php
 cd /usr/sbin
 sudo ./update-ngxblocker
 sudo service nginx reload
-sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+#sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 #sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh

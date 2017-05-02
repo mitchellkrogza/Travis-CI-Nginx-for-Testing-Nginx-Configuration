@@ -2,7 +2,7 @@
 YEAR=$(date +"%Y")
 MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
-sudo whoami
+#sudo whoami
 #sudo chown root:root -R $TRAVIS_BUILD_DIR
 #sudo git remote -v
 #sudo git remote rm origin

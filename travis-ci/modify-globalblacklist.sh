@@ -12,8 +12,8 @@ _inputdbB=$TRAVIS_BUILD_DIR/gentime.db
 
 # Declare Nginx template and temp variables
 _nginx=$TRAVIS_BUILD_DIR/globalblacklist.conf
-_tmpnginxA=$TRAVIS_BUILD_DIRtmpnginxA
-_tmpnginxB=$TRAVIS_BUILD_DIRtmpnginxB
+_tmpnginxA=tmpnginxA
+_tmpnginxB=tmpnginxB
 
 # Start and End Strings to Search for to do inserts into template
 _startdate="### Last Updated"

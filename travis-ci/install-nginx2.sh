@@ -88,6 +88,7 @@ sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 cd $TRAVIS_BUILD_DIR
 sudo git remote -v
+sudo git remote rm origin
 #cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 #sudo sed --version
 #sudo apt-cache policy dash

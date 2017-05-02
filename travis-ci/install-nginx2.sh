@@ -86,6 +86,8 @@ sudo service nginx reload
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 #sudo export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+cd $TRAVIS_BUILD_DIR
+sudo git remote -v
 #cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 #sudo sed --version
 #sudo apt-cache policy dash

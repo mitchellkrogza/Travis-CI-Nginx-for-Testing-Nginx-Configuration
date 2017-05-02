@@ -36,7 +36,7 @@ script:
   - STATUSCODE=$(curl -I http://localhost:9000/index.php -e http://zx6.ru &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
 
 before_deploy:
-- git remote -v
+#- git remote -v
 - git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"

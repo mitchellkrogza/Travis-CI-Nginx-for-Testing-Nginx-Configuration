@@ -21,6 +21,7 @@ sudo git push origin master && git push origin master --tags
 ls -aR
 #cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 ls -la $TRAVIS_BUILD_DIR
+git branch -a
 #else echo Tag already exists!; fi
 
 #YEAR=$(date +"%Y")

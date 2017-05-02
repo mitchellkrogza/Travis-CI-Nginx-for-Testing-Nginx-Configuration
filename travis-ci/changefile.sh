@@ -14,7 +14,8 @@ sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.gi
 sudo git remote -v
 echo "Third Check of Remote After Adding it"
 ls -l $TRAVIS_BUILD_DIR/.git/FETCH_HEAD
-echo "Check permissions on git HEAD"
+ls -la $TRAVIS_BUILD_DIR
+echo "Check permissions on git HEAD / get dir listing of travis build dir"
 sudo git config --global user.email "${GIT_EMAIL}"
 sudo git config --global user.name "${GIT_NAME}"
 sudo git config --global push.default simple

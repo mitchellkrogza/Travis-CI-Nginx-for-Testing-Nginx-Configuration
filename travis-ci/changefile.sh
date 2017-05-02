@@ -25,11 +25,11 @@ git config --global push.default simple
 #export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
 #msg="Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #echo "$msg" >> $TRAVIS_BUILD_DIR/build.txt
-sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+#sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 #sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf
-git add -A .
+#git add -A .
 #git add $TRAVIS_BUILD_DIR/build.txt
-git commit -m "Update build version file with $TRAVIS_BUILD_NUMBER"
+#git commit -m "Update build version file with $TRAVIS_BUILD_NUMBER"
 
 #YEAR=$(date +"%Y")
 #MONTH=$(date +"%m")

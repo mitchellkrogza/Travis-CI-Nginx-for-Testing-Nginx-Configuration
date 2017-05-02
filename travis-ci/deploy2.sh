@@ -5,7 +5,7 @@ cd $TRAVIS_BUILD_DIR
 sudo git config --global user.email "${GIT_EMAIL}"
 sudo git config --global user.name "${GIT_NAME}"
 sudo git config --global push.default simple
-sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+#sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
 sudo git fetch --tags
 msg="Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"

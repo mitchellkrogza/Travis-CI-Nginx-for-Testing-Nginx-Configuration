@@ -85,3 +85,5 @@ sudo ./update-ngxblocker
 sudo service nginx reload
 #sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 #sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+sudo sed -V
+sudo apt-cache policy dash

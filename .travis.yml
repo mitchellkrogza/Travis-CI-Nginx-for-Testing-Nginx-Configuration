@@ -43,8 +43,8 @@ before_deploy:
 #- git config --global user.name "${GIT_NAME}"
 #- git config --global push.default simple
 - export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
-- sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
-- cat $TRAVIS_BUILD_DIR/globalblacklist.conf
+#- sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+#- cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 #- git commit -am "Travis Test Passed"
 - git commit -a
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"

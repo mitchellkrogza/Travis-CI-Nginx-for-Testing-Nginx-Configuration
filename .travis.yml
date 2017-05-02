@@ -42,7 +42,7 @@ before_deploy:
 #- git config --global user.email "${GIT_EMAIL}"
 #- git config --global user.name "${GIT_NAME}"
 #- git config --global push.default simple
-#- export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
+- export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 #- sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 #- cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 #- git commit -am "Travis Test Passed"

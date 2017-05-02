@@ -5,6 +5,7 @@
 
 # Start time of script generation
 start=$(date +%s.%N)
+MY_GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 
 # Temporary database files we create
 _inputdbA=/tmp/lastupdated.db
@@ -27,7 +28,7 @@ LASTUPDATEIFS=$IFS
 IFS=$'\n'
 now="$(date)"
 echo $_startdate >> $_tmpnginxA
-printf "### Updated: "$now"\n### Build: "$GIT_TAG"\n" >> $_tmpnginxA
+printf "### Updated: "$now"\n### Build: "$MY_GIT_TAG"\n" >> $_tmpnginxA
 echo $_enddate  >> $_tmpnginxA
 IFS=$LASTUPDATEIFS
 mv $_tmpnginxA $_inputdbA

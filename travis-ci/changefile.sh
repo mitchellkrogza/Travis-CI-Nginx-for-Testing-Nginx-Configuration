@@ -16,6 +16,8 @@ echo "Third Check of Remote After Adding it"
 ls -l $TRAVIS_BUILD_DIR/.git/FETCH_HEAD
 ls -la $TRAVIS_BUILD_DIR
 ls -la $TRAVIS_BUILD_DIR/.git
+sudo git fetch origin master
+ls -la $TRAVIS_BUILD_DIR/.git
 echo "Check permissions on git HEAD / get dir listing of travis build dir"
 sudo git config --global user.email "${GIT_EMAIL}"
 sudo git config --global user.name "${GIT_NAME}"

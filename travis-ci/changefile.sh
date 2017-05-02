@@ -5,9 +5,14 @@ cd $TRAVIS_BUILD_DIR
 #sudo whoami
 #sudo chown root:root -R $TRAVIS_BUILD_DIR
 sudo git remote -v
+echo "First check of remote"
 sudo git remote rm origin
+echo "Try removing remote"
 sudo git remote -v
+echo "Second check of remote"
 sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+sudo git remote -v
+echo "Third Check of Remote"
 sudo git config --global user.email "${GIT_EMAIL}"
 sudo git config --global user.name "${GIT_NAME}"
 sudo git config --global push.default simple

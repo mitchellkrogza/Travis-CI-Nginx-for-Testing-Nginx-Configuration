@@ -12,12 +12,13 @@ msg="Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
 git tag $GIT_TAG -a -m "Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
-#sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf
-git add -A .
+sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf
+#git add -A .
 #git add $TRAVIS_BUILD_DIR/build.txt
-git commit -m "Update build version file with $TRAVIS_BUILD_NUMBER"
+git commit -am "Update build version file with $TRAVIS_BUILD_NUMBER"
 git push origin master && git push origin master --tags
 ls -aR
+cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 #else echo Tag already exists!; fi
 
 #YEAR=$(date +"%Y")

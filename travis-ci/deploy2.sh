@@ -18,11 +18,12 @@ sudo chown travis:travis $TRAVIS_BUILD_DIR/globalblacklist.conf
 git add $TRAVIS_BUILD_DIR/globalblacklist.conf
 #git add .
 #git add $TRAVIS_BUILD_DIR/build.txt
-sudo git commit -am "Update build version file with $TRAVIS_BUILD_NUMBER"
-sudo git push origin master -f && git push origin master --tags -f
+git commit -am "Update build version file with $TRAVIS_BUILD_NUMBER"
+#sudo git push origin master -f && git push origin master --tags -f
+git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --all
 ls -aR
 #cat $TRAVIS_BUILD_DIR/globalblacklist.conf
-ls -la $TRAVIS_BUILD_DIR
+#ls -la $TRAVIS_BUILD_DIR
 #git branch -a
 #echo $TRAVIS_BRANCH
 #else echo Tag already exists!; fi

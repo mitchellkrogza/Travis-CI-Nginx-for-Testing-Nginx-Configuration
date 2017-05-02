@@ -19,7 +19,7 @@ git add $TRAVIS_BUILD_DIR/globalblacklist.conf
 #git add .
 #git add $TRAVIS_BUILD_DIR/build.txt
 sudo git commit -am "Update build version file with $TRAVIS_BUILD_NUMBER"
-sudo git push origin master && git push origin master --tags
+sudo git push origin master -f && git push origin master --tags -f
 ls -aR
 #cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 ls -la $TRAVIS_BUILD_DIR

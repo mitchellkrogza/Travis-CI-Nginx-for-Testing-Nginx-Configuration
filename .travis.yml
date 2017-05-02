@@ -48,6 +48,7 @@ before_deploy:
 #- cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 #- git commit -am "Travis Test Passed"
 #- git commit -a
+- cd $TRAVIS_BUILD_DIR
 - git add .
 - git commit -am "Build $TRAVIS_BUILD_NUMBER"
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"

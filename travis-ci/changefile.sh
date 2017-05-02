@@ -13,7 +13,6 @@ echo "Second check of remote"
 git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 git remote -v
 echo "Third Check of Remote After Adding it"
-ls -l $TRAVIS_BUILD_DIR/.git/FETCH_HEAD
 ls -la $TRAVIS_BUILD_DIR
 ls -la $TRAVIS_BUILD_DIR/.git
 git fetch origin master
@@ -22,8 +21,8 @@ echo "Check permissions on git HEAD / get dir listing of travis build dir"
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"
 git config --global push.default simple
-export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
-msg="Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
+#export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
+#msg="Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #echo "$msg" >> $TRAVIS_BUILD_DIR/build.txt
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 #sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf

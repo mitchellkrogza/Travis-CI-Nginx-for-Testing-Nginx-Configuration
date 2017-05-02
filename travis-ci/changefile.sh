@@ -12,7 +12,7 @@ sudo git remote -v
 echo "Second check of remote"
 sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 sudo git remote -v
-echo "Third Check of Remote"
+echo "Third Check of Remote After Adding it"
 sudo git config --global user.email "${GIT_EMAIL}"
 sudo git config --global user.name "${GIT_NAME}"
 sudo git config --global push.default simple

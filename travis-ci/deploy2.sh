@@ -12,13 +12,13 @@ export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
 git fetch --tags
 msg="Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
-git tag $GIT_TAG -a -m "Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo chown travis:travis $TRAVIS_BUILD_DIR/globalblacklist.conf
 git add $TRAVIS_BUILD_DIR/globalblacklist.conf
 #git add .
 #git add $TRAVIS_BUILD_DIR/build.txt
-git commit -am "Update build version file with $TRAVIS_BUILD_NUMBER"
+git tag $GIT_TAG -a -m "Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
+git commit -am "Update build version file $GIT_TAG with $TRAVIS_BUILD_NUMBER"
 #sudo git push origin master -f && git push origin master --tags -f
 git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --all
 ls -aR

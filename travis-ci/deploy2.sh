@@ -19,6 +19,7 @@ git commit -am "Update build version file with $TRAVIS_BUILD_NUMBER"
 git push origin master && git push origin master --tags
 ls -aR
 cat $TRAVIS_BUILD_DIR/globalblacklist.conf
+ls -la $TRAVIS_BUILD_DIR
 #else echo Tag already exists!; fi
 
 #YEAR=$(date +"%Y")

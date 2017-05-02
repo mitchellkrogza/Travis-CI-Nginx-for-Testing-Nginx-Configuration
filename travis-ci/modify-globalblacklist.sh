@@ -7,8 +7,8 @@
 start=$(date +%s.%N)
 
 # Temporary database files we create
-_inputdbA=$TRAVIS_BUILD_DIR/lastupdated.db
-_inputdbB=$TRAVIS_BUILD_DIR/gentime.db
+_inputdbA=/tmp/lastupdated.db
+_inputdbB=/tmp/gentime.db
 
 # Declare Nginx template and temp variables
 _nginx=$TRAVIS_BUILD_DIR/globalblacklist.conf

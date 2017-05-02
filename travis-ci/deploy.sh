@@ -1,10 +1,10 @@
 #!/bin/bash
 YEAR=$(date +"%Y")
 MONTH=$(date +"%m")
+sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 sudo git config --global user.email "${GIT_EMAIL}"
 sudo git config --global user.name "${GIT_NAME}"
 sudo git config --global push.default simple
-sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 #export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
 export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 git fetch --tags

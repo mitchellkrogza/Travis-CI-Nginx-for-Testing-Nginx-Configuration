@@ -12,4 +12,4 @@ export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
 #git add $TRAVIS_BUILD_DIR/build.txt
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf
-sudo git commit -m "Build $TRAVIS_BUILD_NUMBER"
+sudo git commit -m "Build $GIT_TAG"

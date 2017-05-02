@@ -4,8 +4,10 @@ MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
 #sudo whoami
 #sudo chown root:root -R $TRAVIS_BUILD_DIR
-#sudo git remote -v
-#sudo git remote rm origin
+sudo git remote -v
+sudo git remote rm origin
+sudo git remote -v
+sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 sudo git config --global user.email "${GIT_EMAIL}"
 sudo git config --global user.name "${GIT_NAME}"
 sudo git config --global push.default simple

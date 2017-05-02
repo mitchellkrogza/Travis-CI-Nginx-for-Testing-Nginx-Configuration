@@ -48,9 +48,10 @@ before_deploy:
 #- cat $TRAVIS_BUILD_DIR/globalblacklist.conf
 #- git commit -am "Travis Test Passed"
 #- git commit -a
-- cd $TRAVIS_BUILD_DIR
-- git add .
-- git commit -am "Build $TRAVIS_BUILD_NUMBER"
+#- cd $TRAVIS_BUILD_DIR
+- git add $TRAVIS_BUILD_DIR/globalblacklist.conf
+- git commit -m "Build $TRAVIS_BUILD_NUMBER"
+#- git commit -am "Build $TRAVIS_BUILD_NUMBER"
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 - git push origin master && git push origin master --tags
 #- git pull origin https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration

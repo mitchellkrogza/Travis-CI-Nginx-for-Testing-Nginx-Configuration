@@ -8,7 +8,7 @@ git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"
 git config --global push.default simple
 #sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
-git fetch --tags
+#git fetch --tags
 msg="Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh

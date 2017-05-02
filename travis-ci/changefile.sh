@@ -5,20 +5,20 @@ cd $TRAVIS_BUILD_DIR
 #sudo whoami
 #sudo chown root:root -R $TRAVIS_BUILD_DIR
 git remote -v
-echo "First check of remote"
+#echo "First check of remote"
 git remote rm origin
-echo "Try removing remote"
+#echo "Try removing remote"
 git remote -v
-echo "Second check of remote"
+#echo "Second check of remote"
 git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 git remote -v
-echo "Third Check of Remote After Adding it"
-ls -la $TRAVIS_BUILD_DIR
-ls -la $TRAVIS_BUILD_DIR/.git
-#git fetch origin master
+#echo "Third Check of Remote After Adding it"
+#ls -la $TRAVIS_BUILD_DIR
+#ls -la $TRAVIS_BUILD_DIR/.git
+git fetch origin master
 #git pull origin master
-ls -la $TRAVIS_BUILD_DIR/.git
-echo "Check permissions on git HEAD / get dir listing of travis build dir"
+#ls -la $TRAVIS_BUILD_DIR/.git
+#echo "Check permissions on git HEAD / get dir listing of travis build dir"
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"
 git config --global push.default simple

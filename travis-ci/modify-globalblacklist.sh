@@ -11,7 +11,7 @@ _inputdbA=/tmp/lastupdated.db
 _inputdbB=/tmp/gentime.db
 
 # Declare Nginx template and temp variables
-_nginx=$TRAVIS_BUILD_DIR/globalblacklist.conf
+_nginx=/home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/globalblacklist.conf
 _tmpnginxA=tmpnginxA
 _tmpnginxB=tmpnginxB
 
@@ -35,13 +35,13 @@ ed -s $_inputdbA<<\IN
 1,/### Last Updated/d
 /### End Last Updated/,$d
 ,d
-.r $TRAVIS_BUILD_DIR/globalblacklist.conf
+.r /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/globalblacklist.conf
 /### Last Updated/x
 .t.
 .,/### End Last Updated/-d
 #,p
 #,p used to print output replaced with w below to write
-w $TRAVIS_BUILD_DIR/globalblacklist.conf
+w /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/globalblacklist.conf
 q
 IN
 rm $_inputdbA
@@ -61,11 +61,11 @@ ed -s $_inputdbB<<\IN
 1,/### Generated in/d
 /### End Generated in/,$d
 ,d
-.r $TRAVIS_BUILD_DIR/globalblacklist.conf
+.r /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/globalblacklist.conf
 /### Generated in/x
 .t.
 .,/### End Generated in/-d
-w $TRAVIS_BUILD_DIR/globalblacklist.conf
+w /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/globalblacklist.conf
 q
 IN
 rm $_inputdbB

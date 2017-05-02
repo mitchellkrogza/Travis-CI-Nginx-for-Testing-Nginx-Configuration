@@ -2,6 +2,7 @@
 YEAR=$(date +"%Y")
 MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
+sudo chown (whoami):(whoami) -R $TRAVIS_BUILD_DIR
 sudo git remote -v
 sudo git remote rm origin
 sudo git config --global user.email "${GIT_EMAIL}"

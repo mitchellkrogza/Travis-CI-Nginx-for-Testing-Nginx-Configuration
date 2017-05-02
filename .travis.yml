@@ -50,8 +50,8 @@ before_deploy:
 - git add .
 - git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #- git push origin master && git push origin master --tags
-- git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --tags
-- ls -aR
+- git push https://${GH_TOKEN}@github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration --all
+#- ls -aR
 deploy:
   provider: releases
   api_key:

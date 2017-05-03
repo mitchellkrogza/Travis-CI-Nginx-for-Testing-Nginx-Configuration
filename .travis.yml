@@ -77,10 +77,10 @@ deploy:
     #all_branches: true
     branches:
       except:
-        - /^v[0-9]/
-        - /^V.*$/
+        - "/^v[0-9]/"
+        - "/^V.*$/"
     branches:
        only:
-         - master
+         - "master"
 notifications:
   email: false

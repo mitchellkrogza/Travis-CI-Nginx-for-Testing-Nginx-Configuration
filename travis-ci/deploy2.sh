@@ -4,11 +4,12 @@ MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
 #git clone --depth=50 --branch=master https://github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration.git mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration
 #git reset --hard $sha1
+git checkout master
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"
 git config --global push.default simple
-git fetch origin master
-git diff origin/master
+#git fetch origin master
+#git diff origin/master
 #git branch
 #git checkout $TRAVIS_BRANCH
 #git branch

@@ -72,7 +72,9 @@ sudo ./install-ngxblocker -x
 sudo cp $TRAVIS_BUILD_DIR/travis-ci/default.vhost /etc/nginx/sites-available/default.vhost
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
 cd /usr/sbin
-sudo sh -x ./setup-ngxblocker -x
+# Below for Verbose Testing of setup-ngxblocker
+#sudo sh -x ./setup-ngxblocker -x
+sudo ./setup-ngxblocker -x
 sudo nginx -c /etc/nginx/nginx.conf
 sudo service nginx reload
 #sudo nginx -t &> /dev/stdout

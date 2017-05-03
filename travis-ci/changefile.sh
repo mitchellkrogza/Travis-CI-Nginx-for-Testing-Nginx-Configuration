@@ -15,7 +15,7 @@ git remote -v
 #echo "Third Check of Remote After Adding it"
 #ls -la $TRAVIS_BUILD_DIR
 #ls -la $TRAVIS_BUILD_DIR/.git
-git fetch origin master
+#git fetch origin master
 #git pull origin master
 #ls -la $TRAVIS_BUILD_DIR/.git
 #echo "Check permissions on git HEAD / get dir listing of travis build dir"

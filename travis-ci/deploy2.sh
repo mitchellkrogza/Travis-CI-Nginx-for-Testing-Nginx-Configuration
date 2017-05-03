@@ -4,10 +4,10 @@ MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
 #git clone --depth=50 --branch=master https://github.com/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration.git mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration
 #git reset --hard $sha1
-git checkout master
-git config --global user.email "${GIT_EMAIL}"
-git config --global user.name "${GIT_NAME}"
-git config --global push.default simple
+#git checkout master
+#git config --global user.email "${GIT_EMAIL}"
+#git config --global user.name "${GIT_NAME}"
+#git config --global push.default simple
 git status
 #git fetch origin master
 #git diff origin/master
@@ -18,9 +18,9 @@ git status
 #git fetch --tags
 msg="Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
-sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
-sudo chown travis:travis $TRAVIS_BUILD_DIR/globalblacklist.conf
-git add $TRAVIS_BUILD_DIR/globalblacklist.conf
+#sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
+#sudo chown travis:travis $TRAVIS_BUILD_DIR/globalblacklist.conf
+#git add $TRAVIS_BUILD_DIR/globalblacklist.conf
 #git add .
 #git add $TRAVIS_BUILD_DIR/build.txt
 export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER

@@ -30,6 +30,7 @@ sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo chown travis:travis $TRAVIS_BUILD_DIR/globalblacklist.conf
 git add $TRAVIS_BUILD_DIR/globalblacklist.conf
 git commit -am "Update build version file with $TRAVIS_BUILD_NUMBER [ci skip]"
+echo "Hello"
 #git add -A .
 #git add $TRAVIS_BUILD_DIR/build.txt
 #git commit -m "Update build version file with $TRAVIS_BUILD_NUMBER"

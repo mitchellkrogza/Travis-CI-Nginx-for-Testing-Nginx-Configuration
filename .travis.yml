@@ -78,5 +78,9 @@ deploy:
     branches:
       except:
         - /^v[0-9]/
+        - /^V.*$/
+    branches:
+       only:
+         - master
 notifications:
   email: false

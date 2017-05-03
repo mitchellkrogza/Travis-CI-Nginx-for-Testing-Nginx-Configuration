@@ -7,9 +7,9 @@ cd $TRAVIS_BUILD_DIR
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"
 git config --global push.default simple
-git branch
-git checkout $TRAVIS_BRANCH
-git branch
+#git branch
+#git checkout $TRAVIS_BRANCH
+#git branch
 #sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 #git fetch --tags
 msg="Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
@@ -20,6 +20,7 @@ git add $TRAVIS_BUILD_DIR/globalblacklist.conf
 #git add .
 #git add $TRAVIS_BUILD_DIR/build.txt
 export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
+git tag detached-commit -f
 git tag $GIT_TAG -a -m "Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
 #git commit -am "Update build version file $GIT_TAG with $TRAVIS_BUILD_NUMBER"
 sudo git push origin master && git push origin master --tags

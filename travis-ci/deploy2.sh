@@ -9,6 +9,7 @@ git config --global user.name "${GIT_NAME}"
 git config --global push.default simple
 git branch
 git checkout $TRAVIS_BRANCH
+git branch
 #sudo git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 #git fetch --tags
 msg="Tag $GIT_TAG Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"

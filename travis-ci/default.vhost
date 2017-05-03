@@ -5,7 +5,7 @@ server {
 	server_name localhost;
 	charset UTF-8;
 
-		# Block Bad Bots
-		include /etc/nginx/bots.d/blockbots.conf;
-		include /etc/nginx/bots.d/ddos.conf;
+    location / {
+      root /var/www/html/;
+        }
 }

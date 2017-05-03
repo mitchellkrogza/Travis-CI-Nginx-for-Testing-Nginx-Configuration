@@ -74,6 +74,9 @@ deploy:
   on:
     repo: mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration
     tags: false
-    all_branches: true
+    #all_branches: true
+    branches:
+      except:
+        - /^v[0-9]/
 notifications:
   email: false

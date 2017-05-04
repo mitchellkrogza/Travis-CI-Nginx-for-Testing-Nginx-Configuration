@@ -2,17 +2,12 @@
 YEAR=$(date +"%Y")
 MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
-#sudo whoami
-#sudo chown root:root -R $TRAVIS_BUILD_DIR
-git remote -v
-#echo "First check of remote"
+#Remove Remotes Added by TravisCI
 git remote rm origin
-#echo "Try removing remote"
-git remote -v
-#echo "Second check of remote"
+#Add Remote with Secure Key
 git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+#List Remotes ONLY DURING testing - do not do this on live repo / possible key leak
 git remote -v
-#echo "Third Check of Remote After Adding it"
 #ls -la $TRAVIS_BUILD_DIR
 #ls -la $TRAVIS_BUILD_DIR/.git
 #git fetch origin master

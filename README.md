@@ -38,7 +38,7 @@ Having a good sequence of how your run events inside .travis.yml is essential to
 
 ## How to Use This
 
-Look through all configuration files of this repo starting with the structure of .travis.yml and then look at the shell scripts in the travis-ci folder that get run by .travis.yml. Once you get your head around it it will all make sense to you thereafter on how to pay with TravisCI and get it to do exactly what you want it to do.
+Look through all configuration files of this repo starting with the structure of .travis.yml and then look at the shell scripts in the travis-ci folder that get run by .travis.yml. Once you get your head around it it will all make sense to you thereafter on how to play nicely with TravisCI and have TravisCI in turn play nicely with you and get it to do exactly what you want it to do. It will also teach you how to avoid throwing TravisCI into a loop where it continually keeps building and building due to not committing properly, very easy to do as I had it happen on one repository of mine which lead to TravisCI running builds all night long and I only noticed it the next morning :grinning: 
 
 ## Enjoy and hope this helps you. 
 

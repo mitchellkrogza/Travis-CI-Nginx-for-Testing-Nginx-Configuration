@@ -22,15 +22,15 @@ _endmarker="### Version Information END"
 #_startgen="### Generated in"
 #_endgen="### End Generated in"
 
-# PRINT VERSION INFORMATION
-# **********************************
+# PRINT VERSION INFORMATION INTO GLOBALBLACKLIST FILE
+# ***************************************************
 LASTUPDATEIFS=$IFS
 IFS=$'\n'
 now="$(date)"
 end=$(date +%s.%N)    
 echo $_startmarker >> $_tmpnginxA
 runtime=$(python -c "print(${end} - ${start})")
-printf "### Version: "$MY_GIT_TAG"\n### Updated: "$now"\n### Generated In: "$runtime" seconds\n" >> $_tmpnginxA
+printf "#######################\n### Version: "$MY_GIT_TAG"\n### Updated: "$now"\n### Generated In: "$runtime" seconds\n#######################\n" >> $_tmpnginxA
 echo $_endmarker  >> $_tmpnginxA
 IFS=$LASTUPDATEIFS
 mv $_tmpnginxA $_inputdbA

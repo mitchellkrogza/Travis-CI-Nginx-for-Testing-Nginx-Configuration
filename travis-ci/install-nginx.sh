@@ -47,7 +47,7 @@ sudo nginx -c /etc/nginx/nginx.conf
 #sudo service nginx reload
 
 # Copy our index.php file into the default site's root folder
-sudo cp $TRAVIS_BUILD_DIR/www/index.php /var/www/html/index.php
+sudo cp $TRAVIS_BUILD_DIR/travis-ci/index.php /var/www/html/index.php
 
 # Run update-ngxblocker test
 cd /usr/sbin

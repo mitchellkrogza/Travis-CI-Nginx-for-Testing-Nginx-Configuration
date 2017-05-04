@@ -30,17 +30,17 @@ install:
   - sudo apt-get update
   - sudo apt-get install -y --force-yes nginx-extras
 script:
-  - travis-ci/install-nginx2.sh
+  - travis-ci/install-nginx.sh
   - curl -vsf 'http://localhost:9000/index.php' &> /dev/stdout
   - curl -A "googlebot" http://localhost:9000/index.php &> /dev/stdout
   - STATUSCODE=$(curl -A "80legs" http://localhost:9000/index.php &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
   - STATUSCODE=$(curl -A "masscan" http://localhost:9000/index.php &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
   - STATUSCODE=$(curl -I http://localhost:9000/index.php -e http://100dollars-seo.com &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
   - STATUSCODE=$(curl -I http://localhost:9000/index.php -e http://zx6.ru &> /dev/stderr --write-out "%{http_code}") | if test $STATUSCODE 52; then exit 0; fi
-  - travis-ci/changefile.sh
+  - travis-ci/change-file.sh
 
 before_deploy:
-- travis-ci/deploy2.sh
+- travis-ci/deploy-package.sh
 deploy:
   provider: releases
   api_key:

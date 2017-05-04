@@ -5,7 +5,10 @@
 
 # Start time of script generation
 start=$(date +%s.%N)
-MY_GIT_TAG=v2.2017.07.$TRAVIS_BUILD_NUMBER
+versionyear=$(date +%Y)
+versionmonth=$(date +%M)
+#MY_GIT_TAG=V2.2017.07.$TRAVIS_BUILD_NUMBER
+MY_GIT_TAG=V2.$versionyear.$versionmonth.$TRAVIS_BUILD_NUMBER
 
 # Temporary database files we create
 _inputdbA=/tmp/lastupdated.db

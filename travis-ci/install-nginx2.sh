@@ -32,7 +32,7 @@ sudo cp $TRAVIS_BUILD_DIR/travis-ci/default.vhost /etc/nginx/sites-available/def
 
 # Link the vhost file into Nginx /sites-enabled/ and reload nginx
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
-sudo service nginx reload
+#sudo service nginx reload
 
 # Run setup-ngxblocker
 cd /usr/sbin
@@ -44,7 +44,7 @@ sudo ./setup-ngxblocker -x
 
 # Load our Nginx.conf file and reload Nginx
 sudo nginx -c /etc/nginx/nginx.conf
-sudo service nginx reload
+#sudo service nginx reload
 
 # Copy our index.php file into the default site's root folder
 sudo cp $TRAVIS_BUILD_DIR/www/index.php /var/www/html/index.php

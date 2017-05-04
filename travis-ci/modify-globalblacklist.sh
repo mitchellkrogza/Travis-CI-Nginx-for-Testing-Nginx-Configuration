@@ -20,8 +20,8 @@ _tmpnginxA=tmpnginxA
 _tmpnginxB=tmpnginxB
 
 # Start and End Strings to Search for to do inserts into template
-_startmarker="### Version Information"
-_endmarker="### Version Information END"
+_startmarker="### Version Information #"
+_endmarker="### Version Information ##"
 #_startgen="### Generated in"
 #_endgen="### End Generated in"
 
@@ -38,13 +38,13 @@ echo $_endmarker  >> $_tmpnginxA
 IFS=$LASTUPDATEIFS
 mv $_tmpnginxA $_inputdbA
 ed -s $_inputdbA<<\IN
-1,/### Version Information/d
-/### Version Information END/,$d
+1,/### Version Information #/d
+/### Version Information ##/,$d
 ,d
 .r /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/globalblacklist.conf
-/### Version Information/x
+/### Version Information #/x
 .t.
-.,/### Version Information END/-d
+.,/### Version Information ##/-d
 #,p
 #,p used to print output replaced with w below to write
 w /home/travis/build/mitchellkrogza/Travis-CI-Nginx-for-Testing-Nginx-Configuration/globalblacklist.conf

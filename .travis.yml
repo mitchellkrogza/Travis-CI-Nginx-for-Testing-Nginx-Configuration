@@ -40,7 +40,7 @@ script:
   - travis-ci/changefile.sh
 
 before_deploy:
-- sh -x travis-ci/deploy2.sh
+- travis-ci/deploy2.sh
 deploy:
   provider: releases
   api_key:

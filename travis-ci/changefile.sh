@@ -10,7 +10,7 @@ git remote rm origin
 #echo "Try removing remote"
 git remote -v
 #echo "Second check of remote"
-git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+#git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 git remote -v
 #echo "Third Check of Remote After Adding it"
 #ls -la $TRAVIS_BUILD_DIR
@@ -29,7 +29,7 @@ git checkout master
 sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo chown travis:travis $TRAVIS_BUILD_DIR/globalblacklist.conf
 git add $TRAVIS_BUILD_DIR/globalblacklist.conf
-git commit -am "Version: V3.$YEAR.$MONTH.$TRAVIS_BUILD_NUMBER [ci skip]"
+git commit -am "V3.$YEAR.$MONTH.$TRAVIS_BUILD_NUMBER [ci skip]"
 #git add -A .
 #git add $TRAVIS_BUILD_DIR/build.txt
 #git commit -m "Update build version file with $TRAVIS_BUILD_NUMBER"

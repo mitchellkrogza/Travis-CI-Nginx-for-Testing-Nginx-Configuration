@@ -2,109 +2,65 @@
 # Travis CI Bash Script for Installing Nginx on Travis CI and Testing Configurations
 # https://github.com/mitchellkrogza
 
-#set -e
 set -x
-#set -v
 
-#DIR=$(realpath $(dirname "$0"))
-#USER=$(whoami)
-#PHP_VERSION=$(phpenv version-name)
-#ROOT=$(realpath "$DIR/..")
-#PORT=9000
-#SERVER="/tmp/php.sock"
+# Check Date - I only used this for testing to make sure I had set timezone correctly
+# See .travis.yml file in the before_install section on how to set your timezone on TravisCI
+#date
 
-#function tpl {
-#    sed \
-#        -e "s|{DIR}|$DIR|g" \
-#        -e "s|{USER}|$USER|g" \
-#        -e "s|{PHP_VERSION}|$PHP_VERSION|g" \
-#        -e "s|{ROOT}|$ROOT|g" \
-#        -e "s|{PORT}|$PORT|g" \
-#        -e "s|{SERVER}|$SERVER|g" \
-#        < $1 > $2
-#}
+# Start Getting Nginx Ready for Testing the Nginx Bad Bot Blocker
 
-# Make some working directories.
-#mkdir "$DIR/nginx"
-#mkdir "$DIR/nginx/sites-enabled"
-#mkdir "$DIR/var"
-
-# Configure the PHP handler.
-#if [ "$PHP_VERSION" = 'hhvm' ] || [ "$PHP_VERSION" = 'hhvm-nightly' ]
-#then
-#    HHVM_CONF="$DIR/nginx/hhvm.ini"
-
-#    tpl "$DIR/hhvm.tpl" "$HHVM_CONF"
-
-#    cat "$HHVM_CONF"
-
-#    hhvm \
-#        --mode=daemon \
-#        --config="$HHVM_CONF"
-#else
-#    PHP_FPM_BIN="$HOME/.phpenv/versions/$PHP_VERSION/sbin/php-fpm"
-#    PHP_FPM_CONF="$DIR/nginx/php-fpm.conf"
-
-    # Build the php-fpm.conf.
-#    tpl "$DIR/php-fpm.tpl" "$PHP_FPM_CONF"
-
-    # Start php-fpm
-#    "$PHP_FPM_BIN" --fpm-config "$PHP_FPM_CONF"
-#fi
-
-# Build the default nginx config files.
-#tpl "$DIR/nginx.tpl" "$DIR/nginx/nginx.conf"
-#tpl "$DIR/fastcgi.tpl" "$DIR/nginx/fastcgi.conf"
-#tpl "$DIR/defaultsite.tpl" "$DIR/nginx/sites-enabled/defaultsite.conf"
-
-# Start nginx.
-#nginx -c "$DIR/nginx/nginx.conf"
-#echo $TRAVIS_BUILD_DIR
-# Check Date
-date
+# Delete default site created by Nginx Installation
 sudo rm /etc/nginx/sites-available/default
+
+# Download the Nginx Bad Bot Blocker files from the Live Repository
 sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/install-ngxblocker -O /usr/sbin/install-ngxblocker
 sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/setup-ngxblocker -O /usr/sbin/setup-ngxblocker
 sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/update-ngxblocker -O /usr/sbin/update-ngxblocker
+
+# Set our install and setup scripts to be executable
 sudo chmod +x /usr/sbin/install-ngxblocker
 sudo chmod +x /usr/sbin/setup-ngxblocker
 sudo chmod +x /usr/sbin/update-ngxblocker
+
+# Run Install-NgxBlocker
 cd /usr/sbin
 sudo ./install-ngxblocker -x
+
+# Copy our default.vhost file into Nginx /sites-available/
 sudo cp $TRAVIS_BUILD_DIR/travis-ci/default.vhost /etc/nginx/sites-available/default.vhost
+
+# Link the vhost file into Nginx /sites-enabled/ and reload nginx
 sudo ln -s /etc/nginx/sites-available/default.vhost /etc/nginx/sites-enabled/default.vhost
+sudo service nginx reload
+
+# Run setup-ngxblocker
 cd /usr/sbin
-# Below for Verbose Testing of setup-ngxblocker
-#sudo sh -x ./setup-ngxblocker -x
 sudo ./setup-ngxblocker -x
+
+# NOTE: for Verbose Testing of any shell scripts use below format adding sh -x before running the script
+# this helps a lot inside the TravisCI environment to see where a shell script may be failing 
+#sudo sh -x ./setup-ngxblocker -x
+
+# Load our Nginx.conf file and reload Nginx
 sudo nginx -c /etc/nginx/nginx.conf
 sudo service nginx reload
-#sudo nginx -t &> /dev/stdout
-#cat /etc/nginx/nginx.conf
-#sudo nginx -V
-#sudo netstat -peanut
+
+# Copy our index.php file into the default site's root folder
 sudo cp $TRAVIS_BUILD_DIR/www/index.php /var/www/html/index.php
+
+# Run update-ngxblocker test
 cd /usr/sbin
 sudo ./update-ngxblocker
+
+# Reload nginx
 sudo service nginx reload
+
+# Set all our other setup and deploy scripts to be executable
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/deploy.sh
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/before-deploy.sh
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/deploy2.sh
 sudo chmod +x $TRAVIS_BUILD_DIR/travis-ci/changefile.sh
-#sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
-#cd $TRAVIS_BUILD_DIR
-#sudo git remote -v
-#sudo git remote rm origin
-#cat $TRAVIS_BUILD_DIR/globalblacklist.conf
-#sudo git config --global user.email "${GIT_EMAIL}"
-#sudo git config --global user.name "${GIT_NAME}"
-#sudo git config --global push.default simple
-#sudo export GIT_TAG=v1.0.$TRAVIS_BUILD_NUMBER
-#msg="Build $TRAVIS_BUILD_NUMBER"
-#echo "$msg" >> $TRAVIS_BUILD_DIR/build.txt
-#sudo git add $TRAVIS_BUILD_DIR/globalblacklist.conf
-#sudo git commit -m "Build $TRAVIS_BUILD_NUMBER"
 
-#sudo sed --version
-#sudo apt-cache policy dash
+# Travis now goes into the rest of the tests in the script: section of .travis.yml

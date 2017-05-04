@@ -46,8 +46,6 @@ deploy:
   api_key:
     secure: ${GH_TOKEN}
   file:
-  - "test.txt"
-  - "test2.txt"
   - "globalblacklist.conf"
   skip_cleanup: true
   on:

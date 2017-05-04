@@ -10,7 +10,7 @@ git remote rm origin
 #echo "Try removing remote"
 git remote -v
 #echo "Second check of remote"
-#git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 git remote -v
 #echo "Third Check of Remote After Adding it"
 #ls -la $TRAVIS_BUILD_DIR

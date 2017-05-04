@@ -28,6 +28,9 @@ install:
   - sudo apt-get update
   - sudo apt-get install -y --force-yes nginx-extras
   #- travis-ci/install-nginx2.sh
+before_script:
+  - echo 'Africa/Johannesburg' | sudo tee /etc/timezone
+  - sudo dpkg-reconfigure --frontend noninteractive tzdata
 script:
   - travis-ci/install-nginx2.sh
   - curl -vsf 'http://localhost:9000/index.php' &> /dev/stdout

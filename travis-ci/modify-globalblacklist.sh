@@ -8,7 +8,7 @@ start=$(date +%s.%N)
 versionyear=$(date +%Y)
 versionmonth=$(date +%m)
 #MY_GIT_TAG=V2.2017.07.$TRAVIS_BUILD_NUMBER
-MY_GIT_TAG=V2.$versionyear.$versionmonth.$TRAVIS_BUILD_NUMBER
+MY_GIT_TAG=V3.$versionyear.$versionmonth.$TRAVIS_BUILD_NUMBER
 
 # Temporary database files we create
 _inputdbA=/tmp/lastupdated.db

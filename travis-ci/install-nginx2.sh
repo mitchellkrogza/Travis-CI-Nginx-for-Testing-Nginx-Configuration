@@ -60,6 +60,10 @@ set -x
 # Start nginx.
 #nginx -c "$DIR/nginx/nginx.conf"
 #echo $TRAVIS_BUILD_DIR
+# Set TimeZone
+sudo timedatectl set-timezone Africa/Johannesburg
+sudo timedatectl status
+# End Set Timezone
 sudo rm /etc/nginx/sites-available/default
 sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/install-ngxblocker -O /usr/sbin/install-ngxblocker
 sudo wget https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/setup-ngxblocker -O /usr/sbin/setup-ngxblocker

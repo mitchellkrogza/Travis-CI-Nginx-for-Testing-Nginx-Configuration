@@ -22,7 +22,7 @@ This repository contains a simple layout for installing nginx into Travis, then 
 
 If you pulled all your hair out already trying to get this all to work with Travis CI then you have landed in the right repository.
 
-Travis CI does not come with Nginx pre-installed so the install needs to be scripted to tell Travis CI what to do. This script takes care of installing a stable build of nginx including nginx-extras.
+Travis CI does not come with Nginx pre-installed so the install needs to be scripted to tell Travis CI what to do. This script takes care of installing the latest stable build of nginx including nginx-extras from the repository ppa:nginx/stable.
 
 If you don't even know what the heck Travis CI is read here - https://travis-ci.org/
 
@@ -30,18 +30,15 @@ If you don't even know what the heck Travis CI is read here - https://travis-ci.
 
 All of the installation files are located in the [/travis-ci](./travis-ci) directory. 
 
-The main installation is done through the [install-nginx.sh](./travis/install-nginx.sh) bash script. 
+You can see inside the .travis.yml in what sequence the scripts are triggered and how things like execute permissions are set on shell scripts before running them. 
 
-It's a simple script so it should be relatively easy to follow for anyone with a little bit of understanding of bash. The other scripts in the [/travis-ci](./travis-ci) directory are basic Nginx and php-fpm configuration templates. 
+You can also see if you look inside the various shell scripts how certain things like modifying files, commiting them and pushing the changes back to the live repo including pushing release tags back to the live repo. 
+
+Having a good sequence of how your run events inside .travis.yml is essential to understand, certain things just need to happen in certain section like before_install, install, before_deploy and then deploy. Good ordering of events with is essential TravisCI.
 
 ## How to Use This
 
-1. Install Nginx using simple apt-get via entries in the [.travis.yml](./.travis.yml) file.
-2. Collect any information for the install into environment variables.
-3. Copy the configuration templates to a new directory while replacing placeholders with environment variables.
-4. Start php-fpm and Nginx with our custom configuration file instead of the default.
-5. Runs an nginx -t test to confirm Nginx is correctly configured
-6. Runs a curl against a simple php file in the [/www](./www) directory.
+Look through all configuration files of this repo starting with the structure of .travis.yml and then look at the shell scripts in the travis-ci folder that get run by .travis.yml. Once you get your head around it it will all make sense to you thereafter on how to pay with TravisCI and get it to do exactly what you want it to do.
 
 ## Enjoy and hope this helps you. 
 

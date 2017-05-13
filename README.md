@@ -42,4 +42,4 @@ Look through all configuration files of this repo starting with the structure of
 
 ## Enjoy and hope this helps you. 
 
-### If this helped you why not [buy me a beer](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BKF9XT6WHATLG):beer:
+### If this helped you why not [buy me a beer or two](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BKF9XT6WHATLG):beer:

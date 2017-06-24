@@ -30,7 +30,8 @@ sudo $TRAVIS_BUILD_DIR/travis-ci/modify-globalblacklist.sh
 sudo chown travis:travis $TRAVIS_BUILD_DIR/globalblacklist.conf
 
 # Add the modified file to the and commit it
-git add $TRAVIS_BUILD_DIR/globalblacklist.conf
+#git add $TRAVIS_BUILD_DIR/globalblacklist.conf
+git add -A
 git commit -am "V3.$YEAR.$MONTH.$TRAVIS_BUILD_NUMBER [ci skip]"
 
 # Travis now moves to the before_deploy: section of .travis.yml

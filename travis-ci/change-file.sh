@@ -4,10 +4,15 @@ MONTH=$(date +"%m")
 cd $TRAVIS_BUILD_DIR
 
 #Remove Remotes Added by TravisCI
-git remote rm origin
+#git remote rm origin
 
 #Add Remote with Secure Key
-git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+#git remote add origin https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+
+local remote=origin
+if [[ $GH_TOKEN ]]; then
+	remote=https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG
+fi
 
 #List Remotes ONLY DURING testing - do not do this on live repo / possible key leak
 #git remote -v

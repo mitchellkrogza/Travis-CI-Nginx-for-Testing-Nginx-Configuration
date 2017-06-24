@@ -11,7 +11,7 @@ cd $TRAVIS_BUILD_DIR
 
 local remote=origin
 if [[ $GH_TOKEN ]]; then
-	remote=https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG
+	remote=https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
 fi
 
 #List Remotes ONLY DURING testing - do not do this on live repo / possible key leak
